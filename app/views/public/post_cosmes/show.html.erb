@@ -1,0 +1,24 @@
+<h1>詳細</h1>
+<div>
+  <% if @post_cosme.image.attached? %>
+    <%= image_tag @post_cosme.image, size: "200x200" %>
+  <% else %>
+    <%= image_tag 'no_image', size: "200x200" %>
+  <% end %>
+</div>
+<table>
+  <tr>
+    <td>商品名</td>
+    <td><%= @post_cosme.cosme_name %></td>
+  </tr>
+  <tr>
+    <td>内容</td>
+    <td><%= @post_cosme. introduction%></td>
+  </tr>
+  <tr>
+    <% if @post_cosme.customer == current_customer %>
+   <th><%= link_to "編集", edit_public_post_cosme_path(@post_cosme.id) %></th>
+   <th><%= link_to "削除", public_post_cosme_path(@post_cosme), method: :delete, "data-confirm" => "本当に削除しますか？" %></th>
+  <% end %>
+  </tr>
+</table>

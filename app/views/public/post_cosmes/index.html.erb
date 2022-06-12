@@ -1,0 +1,24 @@
+<h1>投稿一覧</h1>
+<table>
+  <thead>
+    <tr>
+      <th>画像</th>
+      <th>商品名</th>
+      <th>レビュー</th>
+    </tr>
+  </thead>
+ <tbody>
+    <% @post_cosmes.each do |post_cosme| %>
+      <tr>
+        <td>
+          <%= image_tag post_cosme.get_image %>
+        </td>
+        <td>
+          <%= link_to public_post_cosme_path(post_cosme) do %>
+            <%= post_cosme.cosme_name %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

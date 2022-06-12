@@ -1,0 +1,17 @@
+<h1>編集</h1>
+<%= form_with model: @post_cosme, url: public_post_cosme_path(@post_cosme.id), method: :patch do |f| %>
+  <div>
+    <%= f.label :"画像" %>
+    <%= f.file_field :image, accept: "image/*" %>
+  </div>
+  <div>
+    <%= f.label :"商品名" %>
+    <%= f.text_field :cosme_name %>
+  </div>
+  <div>
+    <%= f.label :"内容" %>
+    <%= f.text_area :introduction %>
+  </div>
+  <%= f.submit "変更を保存" %>
+<% end %>
+<%= link_to "Show", public_post_cosme_path(@post_cosme.id) %>
