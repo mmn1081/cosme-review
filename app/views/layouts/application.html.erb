@@ -12,6 +12,7 @@
 
   <body>
     <header>
+      <span>CosmeReview</span>
       <% if customer_signed_in? %>
         <li><%= link_to "ホーム", public_customer_path(current_customer.id), class: "nav-link text-dark" %></li>
         <li><%= link_to "投稿一覧", public_post_cosmes_path, class: "nav-link text-dark" %></li>
@@ -19,10 +20,10 @@
         <li><%= link_to "ログアウト", destroy_customer_session_path, method: :delete %></li>
       <% elsif admin_signed_in? %>
         <li><%#= link_to "会員一覧", admin_items_path, class: "nav-link text-dark" %></li>
-        <li><%#= link_to "レビュSー", admin_items_path, class: "nav-link text-dark" %></li>
+        <li><%#= link_to "レビュー", admin_items_path, class: "nav-link text-dark" %></li>
         <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
       <% else %>
-        <li><%#= link_to "About", public_homes_about_path %></li>
+        <li><%#= link_to "About", public_about_path %></li>
         <li><%= link_to "新規登録", new_customer_registration_path %></li>
         <li><%= link_to "ログイン", new_customer_session_path %></li>
       <% end%>

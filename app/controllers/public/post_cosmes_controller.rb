@@ -1,4 +1,7 @@
 class Public::PostCosmesController < ApplicationController
+  before_action :authenticate_customer!#ログインしていないとログイン画面へ
+  before_action :ensure_correct_customer, only: [:edit, :update]
+
   def edit
     @post_cosme = PostCosme.find(params[:id])
     if @post_cosme.customer == current_customer
