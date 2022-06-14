@@ -1,0 +1,17 @@
+<h2>プロフィール</h2>
+<tr><%= image_tag customer.get_profile_image(90, 90) %></tr>
+<table>
+  <tbody>
+    <tr>
+      <th>name</th>
+      <th><%= customer.name %></th>
+    </tr>
+    <tr>
+      <th>introduction</th>
+      <th><%= customer.introduction %></th>
+    </tr>
+  </tbody>
+</table>
+<% if customer.id == current_customer.id %>
+  <%= link_to "プロフィール編集", edit_public_customer_path(customer) %>
+<% end %>

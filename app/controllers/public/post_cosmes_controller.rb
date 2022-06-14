@@ -13,9 +13,6 @@ class Public::PostCosmesController < ApplicationController
 
     if @post_cosme.update(post_cosme_params)
       redirect_to public_post_cosmes_path(@post_cosme.id)
-      
-      
-      
       flash[:notice] = "You have updated book successfully."
     else
       render :edit
@@ -24,10 +21,12 @@ class Public::PostCosmesController < ApplicationController
 
   def show
     @post_cosme = PostCosme.find(params[:id])
+    @customer = current_customer
   end
 
   def index
     @post_cosmes = PostCosme.all
+    @customer = current_customer
   end
 
   def new
