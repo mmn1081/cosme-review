@@ -4,8 +4,11 @@ Rails.application.routes.draw do
 
 
   namespace :public do
-    resources :post_cosmes, only: [:new, :index, :show, :edit, :create, :destroy, :update]
+    resources :post_cosmes, only: [:new, :index, :show, :edit, :create, :destroy, :update] do#親子関係にする為doend使用
+         resources :comments, only: [:create, :destroy]
+    end
     resources :customers, only: [:show, :edit, :update]
+
   end
 
   # 会員用
@@ -23,9 +26,6 @@ Rails.application.routes.draw do
   devise_scope :customer do
     post 'customers/guest_sign_in', to: 'public/sessions#guest_sign_in'
   end
-  #devise_for :customers, controllers: {
-    #registrations: 'public/registrations',
-    #passwords: 'public/passwords'
-  #}
+
   #For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

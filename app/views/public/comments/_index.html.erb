@@ -1,0 +1,18 @@
+<table><!--コメント一覧2-->
+  <tbody>
+    <% post_cosme.comments.each do |comment| %>
+      <tr id="comment_<%=comment.id%>">
+        <td>
+         <%= image_tag comment.customer.get_profile_image(70,70) %></br>
+          <%= comment.customer.name %>
+         </td>
+         <td><%= comment.comment %></td>
+         <td>
+            <% if comment.customer == current_customer %>
+                <%= link_to "Destroy", public_post_cosme_comment_path(comment.post_cosme, comment), method: :delete, remote: true, class: 'btn btn-danger' %>
+            <% end %>
+          </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

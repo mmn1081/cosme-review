@@ -12,6 +12,7 @@
     </tr>
   </tbody>
 </table>
-<% if customer.id == current_customer.id %>
+<% if customer.id == current_customer.id && current_customer.email != 'guest@example.com' %>
   <%= link_to "プロフィール編集", edit_public_customer_path(customer) %>
+
 <% end %>

@@ -25,6 +25,7 @@ class Public::PostCosmesController < ApplicationController
   def show
     @post_cosme = PostCosme.find(params[:id])
     @customer = current_customer
+    @comment = Comment.new
   end
 
   def index

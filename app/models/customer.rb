@@ -5,6 +5,7 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :post_cosmes, dependent: :destroy#post_cosmeとアソシエーション
+  has_many :comments, dependent: :destroy#コメント機能とアソシエーション
 
   has_one_attached :profile_image
 
@@ -17,8 +18,8 @@ class Customer < ApplicationRecord
   end
 
   def self.guest#ゲストログイン
-    find_or_create_by!(email: 'guest@example.com') do |customer|
-      customer.password = SecureRandom.urlsafe_base6
+    find_or_create_by!(email: 'guest@example.com', name: 'ゲスト') do |customer|
+      customer.password = SecureRandom.urlsafe_base64
     end
   end
 end
