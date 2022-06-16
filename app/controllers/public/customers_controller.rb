@@ -1,6 +1,6 @@
 class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!#ログインしていないとログイン画面へ
-  before_action :ensure_correct_customer, only: [:edit, :update]
+  #before_action :ensure_correct_customer, only: [:update]
 
   def show
     @customer = Customer.find(params[:id])
