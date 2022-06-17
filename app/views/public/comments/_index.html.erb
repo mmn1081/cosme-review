@@ -1,4 +1,4 @@
-<table><!--コメント一覧2-->
+<table><!--コメント一覧-->
   <tbody>
     <% post_cosme.comments.each do |comment| %>
       <tr id="comment_<%=comment.id%>">
@@ -9,7 +9,7 @@
          <td><%= comment.comment %></td>
          <td>
             <% if comment.customer == current_customer %>
-                <%= link_to "Destroy", public_post_cosme_comment_path(comment.post_cosme, comment), method: :delete, remote: true, class: 'btn btn-danger' %>
+              <%= link_to "Destroy", public_post_cosme_comment_path(comment.post_cosme, comment), method: :delete, remote: true, class: 'btn btn-danger' %>
             <% end %>
           </td>
       </tr>

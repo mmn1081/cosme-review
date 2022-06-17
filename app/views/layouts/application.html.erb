@@ -6,7 +6,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -19,7 +19,7 @@
         <li><%= link_to "投稿フォーム", new_public_post_cosme_path, class: "nav-link text-dark" %></li>
         <li><%= link_to "ログアウト", destroy_customer_session_path, method: :delete %></li>
       <% elsif admin_signed_in? %>
-        <li><%#= link_to "会員一覧", admin_items_path, class: "nav-link text-dark" %></li>
+        <li><%= link_to "会員一覧", admin_customers_path, class: "nav-link text-dark" %></li>
         <li><%#= link_to "レビュー", admin_items_path, class: "nav-link text-dark" %></li>
         <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
       <% else %>

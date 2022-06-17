@@ -2,6 +2,9 @@ Rails.application.routes.draw do
 
   root to: "homes#top"
 
+  namespace :admin do
+    resources :customers, only: [:index, :show, :edit, :update]
+  end
 
   namespace :public do
     resources :post_cosmes, only: [:new, :index, :show, :edit, :create, :destroy, :update] do#親子関係にする為doend使用
