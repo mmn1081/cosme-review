@@ -20,7 +20,18 @@
               <%= post_cosme.cosme_name %>
             <% end %>
           </td>
+          <td class="post_cosme-evaluation" data-score="<%= post_cosme.evaluation %>"></td>
         </tr>
+
       <% end %>
     </tbody>
   </table>
+<script>
+  $('.post_cosme-evaluation').raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    },
+    path: '/assets/'
+  });
+</script>

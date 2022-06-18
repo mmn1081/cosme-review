@@ -1,6 +1,7 @@
 <!--プロフィール画面-->
 <%= render 'userinfo', customer: @customer %>
 
+
 <h1>詳細</h1>
 <div>
   <% if @post_cosme.image.attached? %>
@@ -16,8 +17,26 @@
   </tr>
   <tr>
     <td>内容</td>
-    <td><%= @post_cosme. introduction%></td>
+    <td><%= @post_cosme.introduction %></td>
   </tr>
+  <tr>
+    <td>タグ</td>
+    <td><%= @post_cosme.tag_id %></td>
+  </tr>
+  <tr>
+    <td>評価</td>
+    <td class="post_cosme-evaluation" data-score="<%= @post_cosme.evaluation %>"></td>
+  <script>
+  $('.post_cosme-evaluation').empty();
+  $('.post_cosme-evaluation').raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    },
+    path: '/assets/'
+  });
+　</script>
+　</tr>
 
   <tr>
     <% if @post_cosme.customer == current_customer %>
@@ -32,6 +51,7 @@
     </td>
   </tr>
 </table>
+
 
 
 <div id="comments_area_<%= @post_cosme.id %>">

@@ -10,3 +10,12 @@ Admin.create!(
    email: 'admin@admin',
    password: 'testtest'
 )
+
+Tag.create([
+    { name: 'リップ' },
+    { name: 'アイ' },
+    { name: 'フェイス'},
+    { name: 'アイブロウ'},
+    { name: 'スキンケア'},
+    { name: 'その他'}
+])

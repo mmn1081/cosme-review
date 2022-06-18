@@ -4,18 +4,14 @@ class Public::PostCosmesController < ApplicationController
 
   def edit
     @post_cosme = PostCosme.find(params[:id])
-    if @post_cosme.customer == current_customer
-     render :edit
-    else
-     redirect_to
-    end
+    @post_cosme.customer == current_customer
   end
 
   def update
     @post_cosme = PostCosme.find(params[:id])
 
     if @post_cosme.update(post_cosme_params)
-      redirect_to public_post_cosmes_path(@post_cosme.id)
+      redirect_to public_post_cosme_path(@post_cosme.id)
       flash[:notice] = "You have updated book successfully."
     else
       render :edit
@@ -29,6 +25,7 @@ class Public::PostCosmesController < ApplicationController
   end
 
   def index
+    #@posts = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : Post.all
     @post_cosmes = PostCosme.all
     @customer = current_customer
   end
@@ -53,7 +50,7 @@ class Public::PostCosmesController < ApplicationController
   private
 
   def post_cosme_params
-    params.require(:post_cosme).permit(:cosme_name, :image, :introduction)
+    params.require(:post_cosme).permit(:cosme_name, :image, :introduction, :evaluation, :tag_id)
   end
 
 end

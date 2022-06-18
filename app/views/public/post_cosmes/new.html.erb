@@ -13,6 +13,25 @@
       <%= f.label :"内容" %>
       <%= f.text_area :introduction %>
     </div>
+
+    <div class="check_box">
+      <%= f.label :"タグ" %>
+      <%= f.collection_select :tag_id, Tag.all, :id, :name %>
+ 　</div>
+
+    <div id="evaluate_stars"><!--レビュー機能-->
+      <%= f.label :evaluate,'評価 ', class:'col-md-3 col-form-label' %>
+      <%= f.hidden_field :evaluate, id: :review_star %>
+    </div>
+    <script>
+      $('#evaluate_stars').raty({
+        starOn: "<%= asset_path('star-on.png') %>",
+        starOff: "<%= asset_path('star-off.png') %>",
+        starHalf: "<%= asset_path('star-half.png') %>",
+        scoreName: 'post_cosme[evaluation]',
+        half: true,
+      });
+    </script>
     <%= f.submit '投稿' %>
   <% end %>
 </div>

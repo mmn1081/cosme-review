@@ -1,6 +1,15 @@
 <%= render 'userinfo', customer: @customer %>
 
 <h1>投稿一覧</h1>
+<%#= form_tag posts_path, method: :get, class: 'boards__searchForm' do %>
+  <%#= select_tag :tag_id,
+    options_from_collection_for_select(Tag.all, :id, :name, :tag_id),
+    {
+      prompt: 'タグで絞り込み検索',
+      onchange: 'submit(this.form);'
+    }
+      %>
+<%# end %>
 <table>
   <thead>
     <tr>
@@ -20,8 +29,19 @@
             <%= post_cosme.cosme_name %>
           <% end %>
         </td>
+        <td class="post_cosme-evaluation" data-score="<%= post_cosme.evaluation %>"></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<script>
+  $('.post_cosme-evaluation').empty();
+  $('.post_cosme-evaluation').raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    },
+    path: '/assets/'
+  });
+</script>
 <%#= paginate @post_cosmes %>

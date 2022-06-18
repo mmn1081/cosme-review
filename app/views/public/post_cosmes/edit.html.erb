@@ -12,6 +12,29 @@
     <%= f.label :"内容" %>
     <%= f.text_area :introduction %>
   </div>
+  <div>
+    <%= f.label :"タグ" %>
+    <%= f.collection_select :tag_id, Tag.all, :id, :name %>
+  </div>
+  <div>
+    <%= f.label :'評価 ', class:'col-md-3 col-form-label' %>
+    <%= f.hidden_field :evaluate, id: :review_star %>
+    <span class="post_cosme-evaluation" data-score="<%= @post_cosme.evaluation %>"></span>
+  </div>
+  <script>
+    $('.post_cosme-evaluation').empty();
+    $('.post_cosme-evaluation').raty({
+      starOn: "<%= asset_path('star-on.png') %>",
+      starOff: "<%= asset_path('star-off.png') %>",
+      starHalf: "<%= asset_path('star-half.png') %>",
+      scoreName: 'post_cosme[evaluation]',
+      half: true,
+      score: function() {
+        return $(this).attr('data-score');
+      },
+    });
+　</script>
+
   <%= f.submit "変更を保存" %>
 <% end %>
-<%= link_to "Show", public_post_cosme_path(@post_cosme.id) %>
+

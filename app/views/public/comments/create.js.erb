@@ -1,4 +1,3 @@
 $("#comments_area_<%= @post_cosme.id %>").html("<%= j(render 'public/comments/index', post_cosme: @post_cosme, comment: @comment) %>");
-append
 $("textarea").val('')
 $("#comments_count_<%= @post_cosme.id %>").html("<%= j(render 'public/comments/detail', post_cosme: @post_cosme) %>");
