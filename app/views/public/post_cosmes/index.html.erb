@@ -1,15 +1,15 @@
 <%= render 'userinfo', customer: @customer %>
 
 <h1>投稿一覧</h1>
-<%#= form_tag posts_path, method: :get, class: 'boards__searchForm' do %>
-  <%#= select_tag :tag_id,
-    options_from_collection_for_select(Tag.all, :id, :name, :tag_id),
+<%= form_tag public_post_cosmes_path, method: :get, class: 'boards__searchForm' do %>
+  <%= select_tag :tag_id,
+    options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
     {
       prompt: 'タグで絞り込み検索',
       onchange: 'submit(this.form);'
     }
-      %>
-<%# end %>
+  %>
+<% end %>
 <table>
   <thead>
     <tr>
@@ -18,7 +18,8 @@
       <th>レビュー</th>
     </tr>
   </thead>
- <tbody>
+  <tbody>
+    <%= @post_cosmes.count == 0 ? "ありません" : "" %>
     <% @post_cosmes.each do |post_cosme| %>
       <tr>
         <td>
@@ -29,13 +30,13 @@
             <%= post_cosme.cosme_name %>
           <% end %>
         </td>
-        <td class="post_cosme-evaluation" data-score="<%= post_cosme.evaluation %>"></td>
+        <td class="post_cosme-evaluation" data-score="<%= post_cosme.evaluation %>"></td><!--評価-->
       </tr>
     <% end %>
   </tbody>
 </table>
 <script>
-  $('.post_cosme-evaluation').empty();
+  $('.post_cosme-evaluation').empty();//ページを戻る時に星を何個も出さない為
   $('.post_cosme-evaluation').raty({
     readOnly: true,
     score: function() {

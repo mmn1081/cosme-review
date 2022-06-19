@@ -17,11 +17,6 @@
       <th>メ－ルアドレス</th>
       <th><%= f.text_field :email %></th>
     </tr>
-    <tr>
-      <th>会員ステータス</th>
-      <th><%#= f.radio_button:is_deleted, false %>有効</th>
-      <th><%#= f.radio_button:is_deleted, true %>利用停止</th>
-    </tr>
   </table>
   <%= f.submit "変更を保存",class: "glyphicon glyphicon-pencil btn btn-success pull-right" %>
   <%= link_to "戻る", admin_customer_path(@customer.id),class: "btn btn-primary" %>

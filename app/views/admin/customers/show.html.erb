@@ -16,10 +16,5 @@
     <th>メ－ルアドレス</th>
     <th><%= @customer.email %></th>
   </tr>
-  <tr>
-    <th>会員ステータス</th>
-    <th><%#= f.radio_button:is_deleted, false %>有効</th>
-    <th><%#= f.radio_button:is_deleted, true %>利用停止</th>
-  </tr>
 </table>
 <%= link_to "編集する", edit_admin_customer_path,class: "glyphicon glyphicon-pencil btn btn-success pull-right" %>

@@ -9,7 +9,7 @@
   <% else %>
     <%= image_tag 'no_image', size: "200x200" %>
   <% end %>
-</div> <!--詳細 -->
+</div>
 <table>
   <tr>
     <td>商品名</td>
@@ -21,21 +21,21 @@
   </tr>
   <tr>
     <td>タグ</td>
-    <td><%= @post_cosme.tag_id %></td>
+    <td><%= @tags.find(@post_cosme.tag_id).name %></td>
   </tr>
   <tr>
-    <td>評価</td>
-    <td class="post_cosme-evaluation" data-score="<%= @post_cosme.evaluation %>"></td>
-  <script>
-  $('.post_cosme-evaluation').empty();
-  $('.post_cosme-evaluation').raty({
-    readOnly: true,
-    score: function() {
-      return $(this).attr('data-score');
-    },
-    path: '/assets/'
-  });
-　</script>
+      <td>評価</td>
+      <td class="post_cosme-evaluation" data-score="<%= @post_cosme.evaluation %>"></td>
+    <script>
+      $('.post_cosme-evaluation').empty();//ページを戻る時に星を何個も出さない為
+      $('.post_cosme-evaluation').raty({
+        readOnly: true,
+        score: function() {
+          return $(this).attr('data-score');
+        },
+        path: '/assets/'
+      });
+  　</script>
 　</tr>
 
   <tr>

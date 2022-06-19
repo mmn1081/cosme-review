@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   namespace :public do
     resources :post_cosmes, only: [:new, :index, :show, :edit, :create, :destroy, :update] do#親子関係にする為doend使用
-         resources :comments, only: [:create, :destroy]
+      resources :comments, only: [:create, :destroy]
     end
     resources :customers, only: [:show, :edit, :update]
 

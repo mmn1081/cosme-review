@@ -22,11 +22,16 @@ class Public::PostCosmesController < ApplicationController
     @post_cosme = PostCosme.find(params[:id])
     @customer = current_customer
     @comment = Comment.new
+    @tags = Tag.all
   end
 
   def index
-    #@posts = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : Post.all
-    @post_cosmes = PostCosme.all
+    @tags = Tag.all
+    if params[:tag_id].present?
+      @post_cosmes = PostCosme.where(tag_id: params[:tag_id]);
+    else
+      @post_cosmes = PostCosme.all
+    end
     @customer = current_customer
   end
 
