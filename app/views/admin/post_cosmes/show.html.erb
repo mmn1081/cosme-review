@@ -1,7 +1,3 @@
-<!--プロフィール画面-->
-<%= render 'userinfo', customer: @post_cosme.customer %><!--投稿者のプロフィールを表示-->
-
-
 <h1>詳細</h1>
 <div>
   <% if @post_cosme.image.attached? %>
@@ -38,14 +34,11 @@
   　</script>
 　</tr>
 
-  <tr>
-    <% if @post_cosme.customer == current_customer %>
-     <th><%= link_to "編集", edit_public_post_cosme_path(@post_cosme.id) %></th>
-     <th><%= link_to "削除", public_post_cosme_path(@post_cosme), method: :delete, "data-confirm" => "本当に削除しますか？" %></th>
-    <% end %>
-  </tr>
+　<tr>
+　  <th><%= link_to "削除", admin_post_cosme_path(@post_cosme), method: :delete, "data-confirm" => "本当に削除しますか？" %></th>
+　</tr>
 
-  <tr>
+　<tr>
     <td id="comments_count_<%= @post_cosme.id %>"><!--コメント数-->
       <%= render "public/comments/detail", post_cosme: @post_cosme %>
     </td>
@@ -57,4 +50,4 @@
 <div id="comments_area_<%= @post_cosme.id %>">
   <%= render "public/comments/index", post_cosme: @post_cosme %><!--コメント一覧-->
 </div>
-  <%= render "public/comments/form", post_cosme: @post_cosme, comment: @comment %><!--コメント-->
+

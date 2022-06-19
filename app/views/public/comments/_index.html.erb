@@ -8,7 +8,9 @@
          </td>
          <td><%= comment.comment %></td>
          <td>
-            <% if comment.customer == current_customer %>
+            <% if admin_signed_in? %>
+              <%= link_to "Destroy", admin_post_cosme_comment_path(comment.post_cosme, comment), method: :delete, remote: true, class: 'btn btn-danger' %>
+            <% elsif comment.customer == current_customer %>
               <%= link_to "Destroy", public_post_cosme_comment_path(comment.post_cosme, comment), method: :delete, remote: true, class: 'btn btn-danger' %>
             <% end %>
           </td>
@@ -16,3 +18,4 @@
     <% end %>
   </tbody>
 </table>
+

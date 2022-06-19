@@ -1,15 +1,4 @@
-<%= render 'userinfo', customer: @customer %><!--プロフィール画面-->
-
 <h1>投稿一覧</h1>
-<%= form_tag public_post_cosmes_path, method: :get, class: 'boards__searchForm' do %>
-  <%= select_tag :tag_id,
-    options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
-    {
-      prompt: 'タグで絞り込み検索',
-      onchange: 'submit(this.form);'
-    }
-  %>
-<% end %>
 <table>
   <thead>
     <tr>
@@ -19,14 +8,13 @@
     </tr>
   </thead>
   <tbody>
-    <%= @post_cosmes.count == 0 ? "ありません" : "" %>
     <% @post_cosmes.each do |post_cosme| %>
       <tr>
         <td>
           <%= image_tag post_cosme.get_image %>
         </td>
         <td>
-          <%= link_to public_post_cosme_path(post_cosme) do %>
+          <%= link_to admin_post_cosme_path(post_cosme) do %>
             <%= post_cosme.cosme_name %>
           <% end %>
         </td>
@@ -45,4 +33,3 @@
     path: '/assets/'
   });
 </script>
-<%#= paginate @post_cosmes %>

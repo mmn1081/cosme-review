@@ -22,7 +22,7 @@
     <span class="post_cosme-evaluation" data-score="<%= @post_cosme.evaluation %>"></span>
   </div>
   <script>
-    $('.post_cosme-evaluation').empty();
+    $('.post_cosme-evaluation').empty();//ページを戻る時に星を何個も出さない為
     $('.post_cosme-evaluation').raty({
       starOn: "<%= asset_path('star-on.png') %>",
       starOff: "<%= asset_path('star-off.png') %>",
