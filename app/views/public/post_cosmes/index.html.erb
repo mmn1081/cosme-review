@@ -1,6 +1,6 @@
 <%= render 'userinfo', customer: @customer %><!--プロフィール画面-->
 
-<h1>投稿一覧</h1>
+<h1>Lists</h1>
 <%= form_tag public_post_cosmes_path, method: :get, class: 'boards__searchForm' do %>
   <%= select_tag :tag_id,
     options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
@@ -23,7 +23,7 @@
     <% @post_cosmes.each do |post_cosme| %>
       <tr>
         <td>
-          <%= image_tag post_cosme.get_image %>
+          <%= image_tag post_cosme.get_image(200,200) %>
         </td>
         <td>
           <%= link_to public_post_cosme_path(post_cosme) do %>

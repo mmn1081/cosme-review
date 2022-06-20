@@ -1,29 +1,46 @@
-
-<%= flash[:alert] %>
-<%= flash[:notice] %>
-<h2>会員ログイン</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :メールアドレス %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-10">
+      <div class="d-flex align-items-center justify-content-center">
+      <%= flash[:alert] %>
+      <%= flash[:notice] %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :パスワード %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+
+  <div class="row mt-5 mb-3">
+    <div class="col-12">
+      <h2 class="d-flex align-items-center justify-content-center">会員ログイン</h2>
+    </div>
   </div>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :次回から自動的にログイン %>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="row">
+      <div class="mx-auto col-8">
+        <table class="table">
+          <tr>
+            <th><%= f.label :メールアドレス %></th>
+            <td><%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %></td>
+          </tr>
+          <tr>
+            <th><%= f.label :パスワード %></th>
+            <td><%= f.password_field :password, autocomplete: "current-password", class:"form-control" %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="mx-auto col-2">
+        <%= f.submit "ログイン", class: "btn btn-dark" %>
+      </div>
     </div>
   <% end %>
-
-  <div class="actions">
-    <%= f.submit "ログイン" %>
+  <div class="row mt-3">
+    <div class="mx-auto col-4">
+      <%= render "public/shared/links" %>
+    </div>
   </div>
-<% end %>
 
-<%= render "public/shared/links" %>
+</div>

@@ -14,7 +14,7 @@
     <tbody>
       <% @post_cosmes.each do |post_cosme| %>
         <tr>
-          <td><%= image_tag post_cosme.get_image %></td>
+          <td><%= image_tag post_cosme.get_image(200,200) %></td>
           <td>
             <%= link_to public_post_cosme_path(post_cosme) do %>
               <%= post_cosme.cosme_name %>
@@ -27,6 +27,7 @@
     </tbody>
   </table>
 <script>
+  $('.post_cosme-evaluation').empty();//ページを戻る時に星を何個も出さない為
   $('.post_cosme-evaluation').raty({
     readOnly: true,
     score: function() {

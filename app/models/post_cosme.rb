@@ -5,12 +5,12 @@ class PostCosme < ApplicationRecord
     has_many :comments, dependent: :destroy#コメント機能とアソシエーション
     has_many :tags, through: :post_cosme
 
-  def get_image#投稿画像
+  def get_image(width, height)#投稿画像
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
       image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
-    image
+    image.variant(resize_to_limit: [width, height]).processed
   end
 
 end

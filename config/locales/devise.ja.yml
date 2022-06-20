@@ -7,7 +7,7 @@ ja:
     failure:
       already_authenticated: 'すでにログインしています。'
       inactive: 'アカウントが有効化されていません。メールに記載された手順にしたがって、アカウントを有効化してください。'
-      invalid: "%{authentication_keys} もしくはパスワードが不正です。"
+      invalid: "%{authentication_keys} もしくはパスワードが間違っています。"
       locked: 'あなたのアカウントは凍結されています。1時間後にやりなおしてください。'
       last_attempt: 'あなたのアカウントは後１回ログインに失敗したら凍結されます。'
       not_found_in_database: "%{authentication_keys} もしくはパスワードが不正です。"
@@ -56,8 +56,8 @@ ja:
       not_found: 'は見つかりませんでした。'
       not_locked: 'は凍結されていません。'
       not_saved:
-        one: "エラーが発生したため %{resource} は保存されませんでした:"
-        other: "%{count} 件のエラーが発生したため %{resource} は保存されませんでした:"
+        one: "エラーが発生したため %{resource} は保存されませんでした"
+        other: "%{count} 件のエラーが発生したため登録できませんでした"
       taken: "は既に使用されています。"
       blank: "が入力されていません。"
       too_short: "は%{count}文字以上に設定して下さい。"

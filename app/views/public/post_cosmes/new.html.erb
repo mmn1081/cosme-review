@@ -24,6 +24,7 @@
       <%= f.hidden_field :evaluate, id: :review_star %>
     </div>
     <script>
+      $('.post_cosme-evaluation').empty();//ページを戻る時に星を何個も出さない為
       $('#evaluate_stars').raty({//☆の画像を持ってくる
         starOn: "<%= asset_path('star-on.png') %>",
         starOff: "<%= asset_path('star-off.png') %>",
