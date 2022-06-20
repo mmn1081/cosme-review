@@ -1,53 +1,64 @@
-<h1>詳細</h1>
-<div>
-  <% if @post_cosme.image.attached? %>
-    <%= image_tag @post_cosme.image, size: "200x200" %>
-  <% else %>
-    <%= image_tag 'no_image', size: "200x200" %>
-  <% end %>
+<div class="container">
+  <div class="row mt-5 md-3">
+    <div class="col-12">
+      <h1 class="d-flex align-items-center justify-content-center">Detail</h1>
+    </div>
+  </div>
+  <div class="row">
+      <div class="col-5 ml-5">
+        <% if @post_cosme.image.attached? %>
+          <%= image_tag @post_cosme.image, size: "200x200", class: "ml-5" %>
+        <% else %>
+          <%= image_tag 'no_image', size: "200x200" %>
+        <% end %>
+      </div>
+      <div class="col-6">
+        <div class="row">
+          <table class="table">
+            <tr>
+              <td>商品名</td>
+              <td><%= @post_cosme.cosme_name %></td>
+            </tr>
+            <tr>
+              <td>内容</td>
+              <td><%= @post_cosme.introduction %></td>
+            </tr>
+            <tr>
+              <td>タグ</td>
+              <td><%= @tags.find(@post_cosme.tag_id).name %></td>
+            </tr>
+            <tr>
+                <td>評価</td>
+                <td class="post_cosme-evaluation" data-score="<%= @post_cosme.evaluation %>"></td>
+              <script>
+                $('.post_cosme-evaluation').empty();//ページを戻る時に星を何個も出さない為
+                $('.post_cosme-evaluation').raty({
+                  readOnly: true,
+                  score: function() {
+                    return $(this).attr('data-score');
+                  },
+                  path: '/assets/'
+                });
+            　</script>
+          　</tr>
+          </table>
+        </div>
+        <div class="row">
+            <%= link_to "削除", admin_post_cosme_path(@post_cosme), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-danger" %>
+        </div>
+        <div class="row">
+          <div class="col-8 mt-5">
+            <div id="comments_count_<%= @post_cosme.id %>"><!--コメント数-->
+              <%= render "public/comments/detail", post_cosme: @post_cosme %>
+            </div>
+
+            <div id="comments_area_<%= @post_cosme.id %>">
+              <%= render "public/comments/index", post_cosme: @post_cosme %><!--コメント一覧-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 </div>
-<table>
-  <tr>
-    <td>商品名</td>
-    <td><%= @post_cosme.cosme_name %></td>
-  </tr>
-  <tr>
-    <td>内容</td>
-    <td><%= @post_cosme.introduction %></td>
-  </tr>
-  <tr>
-    <td>タグ</td>
-    <td><%= @tags.find(@post_cosme.tag_id).name %></td>
-  </tr>
-  <tr>
-      <td>評価</td>
-      <td class="post_cosme-evaluation" data-score="<%= @post_cosme.evaluation %>"></td>
-    <script>
-      $('.post_cosme-evaluation').empty();//ページを戻る時に星を何個も出さない為
-      $('.post_cosme-evaluation').raty({
-        readOnly: true,
-        score: function() {
-          return $(this).attr('data-score');
-        },
-        path: '/assets/'
-      });
-  　</script>
-　</tr>
 
-　<tr>
-　  <th><%= link_to "削除", admin_post_cosme_path(@post_cosme), method: :delete, "data-confirm" => "本当に削除しますか？" %></th>
-　</tr>
-
-　<tr>
-    <td id="comments_count_<%= @post_cosme.id %>"><!--コメント数-->
-      <%= render "public/comments/detail", post_cosme: @post_cosme %>
-    </td>
-  </tr>
-</table>
-
-
-
-<div id="comments_area_<%= @post_cosme.id %>">
-  <%= render "public/comments/index", post_cosme: @post_cosme %><!--コメント一覧-->
-</div>
 

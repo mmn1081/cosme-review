@@ -1,35 +1,45 @@
-<h1>投稿一覧</h1>
-<table>
-  <thead>
-    <tr>
-      <th>画像</th>
-      <th>商品名</th>
-      <th>レビュー</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @post_cosmes.each do |post_cosme| %>
-      <tr>
-        <td>
-          <%= image_tag post_cosme.get_image %>
-        </td>
-        <td>
-          <%= link_to admin_post_cosme_path(post_cosme) do %>
-            <%= post_cosme.cosme_name %>
+<div class="container">
+  <div class="row mt-5 md-3">
+    <div class="col-12">
+      <h1 class="d-flex align-items-center justify-content-center">Lists</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="mx-auto col-8">
+      <table  class="table">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Product name</th>
+            <th>レビュー</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @post_cosmes.each do |post_cosme| %>
+            <tr>
+              <td>
+                <%= image_tag post_cosme.get_image(200,200) %>
+              </td>
+              <td>
+                <%= link_to admin_post_cosme_path(post_cosme) do %>
+                  <%= post_cosme.cosme_name %>
+                <% end %>
+              </td>
+              <td class="post_cosme-evaluation" data-score="<%= post_cosme.evaluation %>"></td><!--評価-->
+            </tr>
           <% end %>
-        </td>
-        <td class="post_cosme-evaluation" data-score="<%= post_cosme.evaluation %>"></td><!--評価-->
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<script>
-  $('.post_cosme-evaluation').empty();//ページを戻る時に星を何個も出さない為
-  $('.post_cosme-evaluation').raty({
-    readOnly: true,
-    score: function() {
-      return $(this).attr('data-score');
-    },
-    path: '/assets/'
-  });
-</script>
+        </tbody>
+      </table>
+      <script>
+        $('.post_cosme-evaluation').empty();//ページを戻る時に星を何個も出さない為
+        $('.post_cosme-evaluation').raty({
+          readOnly: true,
+          score: function() {
+            return $(this).attr('data-score');
+          },
+          path: '/assets/'
+        });
+      </script>
+    </div>
+  </div>
+</div>

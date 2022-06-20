@@ -1,20 +1,33 @@
-<h2><%= @customer.name %>さんの会員情報詳細</h2>
-<table>
-  <tr>
-    <th>会員ID</th>
-    <th><%= @customer.id %></th>
-  </tr>
-  <tr>
-    <th>名前</th>
-    <th><%= @customer.name %></th>
-  </tr>
-  <tr>
-    <th>自己紹介</th>
-    <th><%= @customer.introduction %></th>
-  </tr>
-  <tr>
-    <th>メ－ルアドレス</th>
-    <th><%= @customer.email %></th>
-  </tr>
-</table>
-<%= link_to "編集する", edit_admin_customer_path,class: "glyphicon glyphicon-pencil btn btn-success pull-right" %>
+<div class="container">
+  <div class="row mt-5 mb-3">
+    <div class="col-12">
+      <h2 class="d-flex align-items-center justify-content-center"><%= @customer.name %>さんの情報詳細</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="mx-auto col-lg-4 col-sm-8">
+      <table class="table">
+        <tr>
+          <th>名前</th>
+          <td><%= @customer.name %></td>
+        </tr>
+        <tr>
+          <th>自己紹介</th>
+          <td><%= @customer.introduction %></td>
+        </tr>
+        <tr>
+          <th>Email</th>
+          <td><%= @customer.email %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+
+  <div class="row mt-3">
+    <div class="mx-auto col-2">
+      <%= link_to "編集する", edit_admin_customer_path,class: "btn btn-outline-success" %>
+    </div>
+  </div>
+</div>
