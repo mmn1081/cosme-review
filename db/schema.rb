@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 2022_06_19_074526) do
     t.integer "customer_id"
     t.float "evaluation"
     t.integer "tag_id"
+    t.index ["tag_id"], name: "index_post_cosmes_on_tag_id"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -96,4 +97,5 @@ ActiveRecord::Schema.define(version: 2022_06_19_074526) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "post_cosmes", "tags"
 end

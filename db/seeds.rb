@@ -11,7 +11,7 @@ Admin.create!(
    password: 'testtest'
 )
 
-Tag.create([
+Tag.create!([
     { name: 'リップ' },
     { name: 'アイ' },
     { name: 'フェイス'},

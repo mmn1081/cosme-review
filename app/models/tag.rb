@@ -1,3 +1,3 @@
 class Tag < ApplicationRecord
-    belongs_to :post_cosme
+    has_many :post_cosmes
 end

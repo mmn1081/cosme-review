@@ -3,7 +3,7 @@ class PostCosme < ApplicationRecord
 
     belongs_to :customer#post_cosmeに属する
     has_many :comments, dependent: :destroy#コメント機能とアソシエーション
-    has_many :tags, through: :post_cosme
+    belongs_to :tag
 
   def get_image(width, height)#投稿画像
     unless image.attached?
