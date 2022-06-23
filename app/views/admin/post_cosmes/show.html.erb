@@ -4,15 +4,16 @@
       <h1 class="d-flex align-items-center justify-content-center">Detail</h1>
     </div>
   </div>
+
   <div class="row">
-      <div class="col-5 ml-5">
+      <div class="col-sm-3 offset-sm-2">
         <% if @post_cosme.image.attached? %>
           <%= image_tag @post_cosme.image, size: "200x200", class: "ml-5" %>
         <% else %>
           <%= image_tag 'no_image', size: "200x200" %>
         <% end %>
       </div>
-      <div class="col-6">
+      <div class="col-sm-5">
         <div class="row">
           <table class="table">
             <tr>
