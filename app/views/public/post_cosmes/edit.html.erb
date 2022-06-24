@@ -1,39 +1,55 @@
-<h1>編集</h1>
-<%= form_with model: @post_cosme, url: public_post_cosme_path(@post_cosme.id), method: :patch do |f| %>
-  <div>
-    <%= f.label :"画像" %>
-    <%= f.file_field :image, accept: "image/*" %>
+<div class="container">
+  <div class="row mt-5 mb-3">
+    <div class="col-12">
+      <h1 class="d-flex align-items-center justify-content-center">Edit</h1>
+    </div>
   </div>
-  <div>
-    <%= f.label :"商品名" %>
-    <%= f.text_field :cosme_name %>
-  </div>
-  <div>
-    <%= f.label :"内容" %>
-    <%= f.text_area :introduction %>
-  </div>
-  <div>
-    <%= f.label :"タグ" %>
-    <%= f.collection_select :tag_id, Tag.all, :id, :name %>
-  </div>
-  <div>
-    <%= f.label :'評価 ', class:'col-md-3 col-form-label' %>
-    <%= f.hidden_field :evaluate, id: :review_star %>
-    <span class="post_cosme-evaluation" data-score="<%= @post_cosme.evaluation %>"></span>
-  </div>
-  <script>
-    $('.post_cosme-evaluation').empty();//ページを戻る時に星を何個も出さない為
-    $('.post_cosme-evaluation').raty({
-      starOn: "<%= asset_path('star-on.png') %>",
-      starOff: "<%= asset_path('star-off.png') %>",
-      starHalf: "<%= asset_path('star-half.png') %>",
-      half: true,
-      score: function() {
-        return $(this).attr('data-score');
-      },
-    });
-　</script>
 
-  <%= f.submit "変更を保存" %>
-<% end %>
+  <%= form_with model: @post_cosme, url: public_post_cosme_path(@post_cosme.id), method: :patch do |f| %>
+    <div class="row">
+      <div class="mx-auto col-5">
+        <table class="table">
+          <tr>
+            <th><%= f.label :"画像" %></th>
+            <td><%= f.file_field :image, accept: "image/*" %></td>
+          </tr>
+          <tr>
+            <th><%= f.label :"商品名" %></th>
+            <td><%= f.text_field :cosme_name %></td>
+          </tr>
+          <tr>
+            <th><%= f.label :"内容" %></th>
+            <td><%= f.text_area :introduction %></td>
+          </tr>
+          <tr>
+            <th><%= f.label :"タグ" %></th>
+            <td><%= f.collection_select :tag_id, Tag.all, :id, :name %></td>
+          </tr>
+          <tr>
+            <th><%= f.label :'評価' %></th>
+            <td class="post_cosme-evaluation" data-score="<%= @post_cosme.evaluation %>"><%= f.hidden_field :evaluate, id: :review_star %></td>
+            <script>
+              $('.post_cosme-evaluation').empty();//ページを戻る時に星を何個も出さない為
+              $('.post_cosme-evaluation').raty({
+                starOn: "<%= asset_path('star-on.png') %>",
+                starOff: "<%= asset_path('star-off.png') %>",
+                starHalf: "<%= asset_path('star-half.png') %>",
+                half: true,
+                score: function() {
+                  return $(this).attr('data-score');
+                },
+              });
+            </script>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="d-flex align-items-center justify-content-center mx-auto col-lg-4 col-sm-8">
+          <%= f.submit "変更を保存",class: "btn btn-outline-primary col-5 mr-2" %>
+      </div>
+    </div>
+  <% end %>
+</div>
 

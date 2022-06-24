@@ -1,6 +1,6 @@
 <h2>Profile</h2>
-<tr><%= image_tag customer.get_profile_image(90, 90) %></tr>
-<table>
+<tr><%= image_tag customer.get_profile_image(150, 100) %></tr>
+<table class="table">
   <tbody>
     <tr>
       <th><%= customer.name %></th>
@@ -10,7 +10,10 @@
     </tr>
   </tbody>
 </table>
-<% if customer.id == current_customer.id && current_customer.email != 'guest@example.com' %>
-  <%= link_to "プロフィールを編集する", edit_public_customer_path(customer), class:"btn btn-outline-dark" %>
-
-<% end %>
+<div class="row">
+  <div class="mx-auto">
+  <% if customer.id == current_customer.id && current_customer.email != 'guest@example.com' %>
+    <%= link_to "Profile Edit", edit_public_customer_path(customer), class:"btn btn-outline-dark col-12" %>
+  <% end %>
+  </div>
+</div>

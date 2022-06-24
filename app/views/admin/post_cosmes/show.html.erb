@@ -50,17 +50,18 @@
         <div class="row">
             <%= link_to "削除", admin_post_cosme_path(@post_cosme), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-danger" %>
         </div>
+        
         <div class="row">
           <div class="col-8 mt-5">
             <div id="comments_count_<%= @post_cosme.id %>"><!--コメント数-->
               <%= render "public/comments/detail", post_cosme: @post_cosme %>
             </div>
-
             <div id="comments_area_<%= @post_cosme.id %>">
               <%= render "public/comments/index", post_cosme: @post_cosme %><!--コメント一覧-->
             </div>
           </div>
         </div>
+        
       </div>
     </div>
 </div>

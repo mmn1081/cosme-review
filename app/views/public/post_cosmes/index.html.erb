@@ -1,51 +1,63 @@
-<%= render 'userinfo', customer: @customer %><!--プロフィール画面-->
+<div class="container">
+  <div class="row mt-4">
+    <div class="col-3">
+      <%= render 'userinfo', customer: @customer %><!--プロフィール画面-->
+    </div>
 
-<h1>Lists</h1>
-<%= form_tag public_post_cosmes_path, method: :get, class: 'boards__searchForm' do %>
-  <%= select_tag :tag_id,
-    options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
-    {
-      prompt: 'タグで絞り込み検索',
-      onchange: 'submit(this.form);'
-    }
-  %>
-<% end %>
-<table>
-  <thead>
-    <tr>
-      <th>画像</th>
-      <th>商品名</th>
-      <th>レビュー</th>
-    </tr>
-  </thead>
-  <tbody>
-    <%= @post_cosmes.count == 0 ? "ありません" : "" %>
-    <% @post_cosmes.each do |post_cosme| %>
-      <tr>
-        <td>
-          <%= image_tag post_cosme.get_image(200,200) %>
-        </td>
-        <td>
-          <%= link_to public_post_cosme_path(post_cosme) do %>
-            <%= post_cosme.cosme_name %>
+    <div class="mx-auto col-8">
+      <h2>All Lists</h2>
+      <div class="row">
+        <div class="ml-4">
+        <%= form_tag public_post_cosmes_path, method: :get, class: 'boards__searchForm' do %>
+          <%= select_tag :tag_id,
+            options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
+            {
+              prompt: 'タグで絞り込み検索',
+              onchange: 'submit(this.form);'
+            }
+          %>
+        <% end %>
+        </div>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>画像</th>
+            <th>商品名</th>
+            <th>レビュー</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= @post_cosmes.count == 0 ? "ありません" : "" %>
+          <% @post_cosmes.each do |post_cosme| %>
+            <tr>
+              <td>
+                <%= image_tag post_cosme.get_image(200,200) %>
+              </td>
+              <td>
+                <%= link_to public_post_cosme_path(post_cosme) do %>
+                  <%= post_cosme.cosme_name %>
+                <% end %>
+              </td>
+              <td class="post_cosme-evaluation" data-score="<%= post_cosme.evaluation %>"></td><!--評価-->
+            </tr>
           <% end %>
-        </td>
-        <td class="post_cosme-evaluation" data-score="<%= post_cosme.evaluation %>"></td><!--評価-->
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<script>
-  $('.post_cosme-evaluation').empty();//ページを戻る時に星を何個も出さない為
-  $('.post_cosme-evaluation').raty({
-    starOn: "<%= asset_path('star-on.png') %>",
-        starOff: "<%= asset_path('star-off.png') %>",
-        starHalf: "<%= asset_path('star-half.png') %>",
-        half: true,
-    readOnly: true,
-    score: function() {
-      return $(this).attr('data-score');
-    },
-  });
-</script>
-<%#= paginate @post_cosmes %>
+        </tbody>
+      </table>
+      <script>
+        $('.post_cosme-evaluation').empty();//ページを戻る時に星を何個も出さない為
+        $('.post_cosme-evaluation').raty({
+          starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+              starHalf: "<%= asset_path('star-half.png') %>",
+              half: true,
+          readOnly: true,
+          score: function() {
+            return $(this).attr('data-score');
+          },
+        });
+      </script>
+      <%#= paginate @post_cosmes %>
+    </div>
+  </div>
+</div>

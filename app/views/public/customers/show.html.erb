@@ -1,41 +1,48 @@
-<!--プロフィール画面-->
-<%= render 'public/post_cosmes/userinfo', customer: @customer %>
+<div class="container">
+  <div class="row mt-4">
+    <div class="col-3">
+      <%= render 'public/post_cosmes/userinfo', customer: @customer %><!--プロフィール画面-->
+    </div>
 
+    <div class="mx-auto col-8">
+      <h2>My Lists</h2>
 
-<h2>投稿一覧</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>画像</th>
-        <th>商品名</th>
-        <th>レビュー</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @post_cosmes.each do |post_cosme| %>
-        <tr>
-          <td><%= image_tag post_cosme.get_image(200,200) %></td>
-          <td>
-            <%= link_to public_post_cosme_path(post_cosme) do %>
-              <%= post_cosme.cosme_name %>
-            <% end %>
-          </td>
-          <td class="post_cosme-evaluation" data-score="<%= post_cosme.evaluation %>"></td>
-        </tr>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>画像</th>
+            <th>商品名</th>
+            <th>レビュー</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @post_cosmes.each do |post_cosme| %>
+            <tr>
+              <td><%= image_tag post_cosme.get_image(200,200) %></td>
+              <td>
+                <%= link_to public_post_cosme_path(post_cosme) do %>
+                  <%= post_cosme.cosme_name %>
+                <% end %>
+              </td>
+              <td class="post_cosme-evaluation" data-score="<%= post_cosme.evaluation %>"></td>
+            </tr>
 
-      <% end %>
-    </tbody>
-  </table>
-<script>
-  $('.post_cosme-evaluation').empty();//ページを戻る時に星を何個も出さない為
-  $('.post_cosme-evaluation').raty({
-    starOn: "<%= asset_path('star-on.png') %>",
-        starOff: "<%= asset_path('star-off.png') %>",
-        starHalf: "<%= asset_path('star-half.png') %>",
-        half: true,
-    readOnly: true,
-    score: function() {
-      return $(this).attr('data-score');
-    },
-  });
-</script>
+          <% end %>
+        </tbody>
+      </table>
+      <script>
+        $('.post_cosme-evaluation').empty();//ページを戻る時に星を何個も出さない為
+        $('.post_cosme-evaluation').raty({
+          starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+              starHalf: "<%= asset_path('star-half.png') %>",
+              half: true,
+          readOnly: true,
+          score: function() {
+            return $(this).attr('data-score');
+          },
+        });
+      </script>
+    </div>
+  </div>
+</div>

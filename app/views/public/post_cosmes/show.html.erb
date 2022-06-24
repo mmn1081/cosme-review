@@ -1,63 +1,74 @@
-<!--プロフィール画面-->
-<%= render 'userinfo', customer: @post_cosme.customer %><!--投稿者のプロフィールを表示-->
+<div class="container">
+  <div class="row mt-4">
+    <div class="col-3">
+      <%= render 'userinfo', customer: @post_cosme.customer %><!--投稿者のプロフィールを表示-->
+    </div>
 
+    <div class="mx-auto col-5">
+      <h2>Show</h2>
+      <div class="col-sm-3 offset-sm-2">
+        <% if @post_cosme.image.attached? %>
+          <%= image_tag @post_cosme.image, size: "200x200" %>
+        <% else %>
+          <%= image_tag 'no_image', size: "200x200" %>
+        <% end %>
+      </div>
+      <div class="col-sm-8">
+        <div class="row">
+          <table class="table">
+            <tr>
+              <th>商品名</th>
+              <td><%= @post_cosme.cosme_name %></td>
+            </tr>
+            <tr>
+              <th>内容</th>
+              <td><%= @post_cosme.introduction %></td>
+            </tr>
+            <tr>
+              <th>タグ</th>
+              <td><%= @tags.find(@post_cosme.tag_id).name %></td>
+            </tr>
+            <tr>
+              <th>評価</th>
+              <td class="post_cosme-evaluation" data-score="<%= @post_cosme.evaluation %>"></td>
+              <script>
+                $('.post_cosme-evaluation').empty();//ページを戻る時に星を何個も出さない為
+                $('.post_cosme-evaluation').raty({
+                  starOn: "<%= asset_path('star-on.png') %>",
+                  starOff: "<%= asset_path('star-off.png') %>",
+                  starHalf: "<%= asset_path('star-half.png') %>",
+                  half: true,
+                  readOnly: true,
+                  score: function() {
+                    return $(this).attr('data-score');
+                  },
+                });
+            　</script>
+          　</tr>
+          </table>
+        </div>
 
-<h1>詳細</h1>
-<div>
-  <% if @post_cosme.image.attached? %>
-    <%= image_tag @post_cosme.image, size: "200x200" %>
-  <% else %>
-    <%= image_tag 'no_image', size: "200x200" %>
-  <% end %>
+          <div class="row">
+            <% if @post_cosme.customer == current_customer %>
+             <%= link_to "Edit", edit_public_post_cosme_path(@post_cosme.id), class:"btn btn-outline-success mr-4" %>
+             <%= link_to "Destroy", public_post_cosme_path(@post_cosme), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-danger" %>
+            <% end %>
+          </div>
+
+        <div class="row">
+          <div class="col-9 mt-5">
+            <div id="comments_count_<%= @post_cosme.id %>"><!--コメント数-->
+              <%= render "public/comments/detail", post_cosme: @post_cosme %>
+            </div>
+            <div id="comments_area_<%= @post_cosme.id %>">
+              <%= render "public/comments/index", post_cosme: @post_cosme %><!--コメント一覧-->
+            </div>
+            <%= render "public/comments/form", post_cosme: @post_cosme, comment: @comment %><!--コメント-->
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
 </div>
-<table>
-  <tr>
-    <td>商品名</td>
-    <td><%= @post_cosme.cosme_name %></td>
-  </tr>
-  <tr>
-    <td>内容</td>
-    <td><%= @post_cosme.introduction %></td>
-  </tr>
-  <tr>
-    <td>タグ</td>
-    <td><%= @tags.find(@post_cosme.tag_id).name %></td>
-  </tr>
-  <tr>
-      <td>評価</td>
-      <td class="post_cosme-evaluation" data-score="<%= @post_cosme.evaluation %>"></td>
-    <script>
-      $('.post_cosme-evaluation').empty();//ページを戻る時に星を何個も出さない為
-      $('.post_cosme-evaluation').raty({
-        starOn: "<%= asset_path('star-on.png') %>",
-        starOff: "<%= asset_path('star-off.png') %>",
-        starHalf: "<%= asset_path('star-half.png') %>",
-        half: true,
-        readOnly: true,
-        score: function() {
-          return $(this).attr('data-score');
-        },
-      });
-  　</script>
-　</tr>
 
-  <tr>
-    <% if @post_cosme.customer == current_customer %>
-     <th><%= link_to "編集", edit_public_post_cosme_path(@post_cosme.id) %></th>
-     <th><%= link_to "削除", public_post_cosme_path(@post_cosme), method: :delete, "data-confirm" => "本当に削除しますか？" %></th>
-    <% end %>
-  </tr>
-
-  <tr>
-    <td id="comments_count_<%= @post_cosme.id %>"><!--コメント数-->
-      <%= render "public/comments/detail", post_cosme: @post_cosme %>
-    </td>
-  </tr>
-</table>
-
-
-
-<div id="comments_area_<%= @post_cosme.id %>">
-  <%= render "public/comments/index", post_cosme: @post_cosme %><!--コメント一覧-->
-</div>
-  <%= render "public/comments/form", post_cosme: @post_cosme, comment: @comment %><!--コメント-->

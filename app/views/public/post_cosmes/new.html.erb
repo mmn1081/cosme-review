@@ -1,26 +1,45 @@
-<div>
-  <h1>新規投稿</h1>
-  <%= form_with model: @post_cosme, url: public_post_cosmes_path do |f| %>
-    <div>
-      <%= f.label :"画像" %>
-      <%= f.file_field :image, accept: "image/*" %>
+<div class="container">
+  <div class="row mt-5 md-3">
+    <div class="col-12">
+        <h1 class="d-flex align-items-center justify-content-center">New</h1>
     </div>
-    <div>
-      <%= f.label :"商品名" %>
-      <%= f.text_field :cosme_name %>
-    </div>
-    <div>
-      <%= f.label :"内容" %>
-      <%= f.text_area :introduction %>
-    </div>
+  </div>
 
-    <div class="check_box">
-      <%= f.label :"タグ" %>
-      <%= f.collection_select :tag_id, Tag.all, :id, :name %>
- 　  </div>
+  <%= form_with model: @post_cosme, url: public_post_cosmes_path do |f| %>
+
+    <div class="row">
+      <div class="mx-auto col-lg-5 col-sm-9">
+        <table class="table">
+          <tr>
+            <th><%= f.label :"画像" %></th>
+            <td><%= f.file_field :image, accept: "image/*", class:"form-control" %></td>
+          </tr>
+          <tr>
+            <th><%= f.label :"商品名" %></th>
+            <td><%= f.text_field :cosme_name, class:"form-control" %></td>
+          </tr>
+          <tr>
+            <th><%= f.label :"内容" %></th>
+            <td><%= f.text_area :introduction, class:"form-control" %></td>
+          </tr>
+          <div class="check_box">
+            <tr>
+              <th><%= f.label :"タグ" %></th>
+              <td><%= f.collection_select :tag_id, Tag.all, :id, :name, class:"form-control" %></td>
+            </tr>
+          </div>
+            <tr>
+              <th><%= f.label :evaluate,"評価" %></th>
+              <td>
+                <%= f.hidden_field :evaluate, id: :review_star %>
+              </td>
+            </tr>
+        </table>
+      </div>
+    </div>
 
     <div id="evaluate_stars"><!--評価-->
-      <%= f.label :evaluate,'評価 ', class:'col-md-3 col-form-label' %>
+      <%= f.label :evaluate,"評価" %>
       <%= f.hidden_field :evaluate, id: :review_star %>
     </div>
     <script>
@@ -33,6 +52,10 @@
         half: true,
       });
     </script>
-    <%= f.submit '投稿' %>
+    <div class="row mt-2">
+      <div class="mx-auto col-2">
+        <%= f.submit '投稿',class: "btn btn-outline-info col-7" %>
+      </div>
+    </div>
   <% end %>
 </div>
