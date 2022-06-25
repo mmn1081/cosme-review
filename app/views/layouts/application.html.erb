@@ -25,13 +25,13 @@
 
               <% if customer_signed_in? %><!--会員側-->
                   <li  class="nav-item">
-                    <%= link_to public_customer_path(current_customer.id), class: "nav-link text-dark font-italic" do %>
+                    <%= link_to public_customer_path(current_customer.id), class: "nav-link text-dark font-italic",data: {"turbolinks"=>false} do %>
                       <i class="fas fa-home text-dark"></i>
                       Home
                     <% end %>
                   </li>
                   <li  class="nav-item">
-                    <%= link_to public_post_cosmes_path, class: "nav-link text-dark font-italic" do %>
+                    <%= link_to public_post_cosmes_path, class: "nav-link text-dark font-italic",data: {"turbolinks"=>false} do %>
                       <i class="fas fa-clipboard-list"></i>
                       Lists
                     <% end %>
@@ -51,14 +51,14 @@
 
                 <% elsif admin_signed_in? %><!--管理者側-->
                   <li  class="nav-item">
-                    <%= link_to admin_customers_path, class: "nav-link text-dark font-italic" do %>
+                    <%= link_to admin_customers_path, class: "nav-link text-dark font-italic",data: {"turbolinks"=>false} do %>
                       <i class="fas fa-users"></i>
                       Members
                     <% end %>
                   </li>
                   </li>
                   <li  class="nav-item">
-                    <%= link_to admin_post_cosmes_path, class: "nav-link text-dark font-italic" do %>
+                    <%= link_to admin_post_cosmes_path, class: "nav-link text-dark font-italic",data: {"turbolinks"=>false} do %>
                       <i class="fas fa-clipboard-list"></i>
                         Lists
                     <% end %>

@@ -28,9 +28,9 @@ class Public::PostCosmesController < ApplicationController
   def index
     @tags = Tag.all
     if params[:tag_id].present?
-      @post_cosmes = PostCosme.where(tag_id: params[:tag_id]);
+      @post_cosmes = PostCosme.where(tag_id: params[:tag_id]).page(params[:page])
     else
-      @post_cosmes = PostCosme.all
+      @post_cosmes = PostCosme.page(params[:page])
     end
     @customer = current_customer
   end

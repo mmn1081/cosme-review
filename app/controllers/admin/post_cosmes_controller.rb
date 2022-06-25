@@ -1,7 +1,7 @@
 class Admin::PostCosmesController < ApplicationController
   before_action :authenticate_admin!
   def index
-    @post_cosmes = PostCosme.all
+    @post_cosmes = PostCosme.page(params[:page])
   end
 
   def show
