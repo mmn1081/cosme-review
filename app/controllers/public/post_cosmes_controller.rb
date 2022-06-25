@@ -12,7 +12,7 @@ class Public::PostCosmesController < ApplicationController
 
     if @post_cosme.update(post_cosme_params)
       redirect_to public_post_cosme_path(@post_cosme.id)
-      flash[:notice] = "You have updated book successfully."
+      flash[:notice] = "更新できました"
     else
       render :edit
     end
@@ -48,8 +48,12 @@ class Public::PostCosmesController < ApplicationController
   def create
     @post_cosme = PostCosme.new(post_cosme_params)
     @post_cosme.customer_id = current_customer.id
-    @post_cosme.save
-    redirect_to public_post_cosmes_path(@post_cosme.id)
+    if @post_cosme.save
+      redirect_to public_post_cosmes_path(@post_cosme.id)
+      flash[:notice] = "投稿できました"
+    else
+      render :new
+    end
   end
 
   private

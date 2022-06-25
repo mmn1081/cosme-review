@@ -5,6 +5,14 @@
     </div>
   </div>
 
+  <div class="row mt-1 md-3">
+    <div class="mx-auto">
+      <% if @post_cosme.errors.any? %>
+        <%= @post_cosme.errors.count %>件の空欄があります
+      <% end %>
+    </div>
+  </div>
+
   <%= form_with model: @post_cosme, url: public_post_cosmes_path do |f| %>
 
     <div class="row">
@@ -30,28 +38,22 @@
           </div>
             <tr>
               <th><%= f.label :evaluate,"評価" %></th>
-              <td>
-                <%= f.hidden_field :evaluate, id: :review_star %>
-              </td>
+              <td id="evaluate_stars"><%= f.hidden_field :evaluate, id: :review_star %></td>
+              <script>
+                $('.post_cosme-evaluation').empty();//ページを戻る時に星を何個も出さない為
+                $('#evaluate_stars').raty({//☆の画像を持ってくる
+                  starOn: "<%= asset_path('star-on.png') %>",
+                  starOff: "<%= asset_path('star-off.png') %>",
+                  starHalf: "<%= asset_path('star-half.png') %>",
+                  scoreName: 'post_cosme[evaluation]',
+                  half: true,
+                });
+              </script>
             </tr>
         </table>
       </div>
     </div>
 
-    <div id="evaluate_stars"><!--評価-->
-      <%= f.label :evaluate,"評価" %>
-      <%= f.hidden_field :evaluate, id: :review_star %>
-    </div>
-    <script>
-      $('.post_cosme-evaluation').empty();//ページを戻る時に星を何個も出さない為
-      $('#evaluate_stars').raty({//☆の画像を持ってくる
-        starOn: "<%= asset_path('star-on.png') %>",
-        starOff: "<%= asset_path('star-off.png') %>",
-        starHalf: "<%= asset_path('star-half.png') %>",
-        scoreName: 'post_cosme[evaluation]',
-        half: true,
-      });
-    </script>
     <div class="row mt-2">
       <div class="mx-auto col-2">
         <%= f.submit '投稿',class: "btn btn-outline-info col-7" %>

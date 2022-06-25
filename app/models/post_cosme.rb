@@ -5,6 +5,12 @@ class PostCosme < ApplicationRecord
     has_many :comments, dependent: :destroy#コメント機能とアソシエーション
     belongs_to :tag
 
+  validates :image, presence: true
+  validates :cosme_name, presence: true
+  validates :introduction, presence: true
+  validates :evaluation, presence: true
+
+
   def get_image(width, height)#投稿画像
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')

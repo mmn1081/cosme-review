@@ -5,21 +5,29 @@
     </div>
   </div>
 
+  <div class="row mt-1 md-3">
+    <div class="mx-auto">
+      <% if @post_cosme.errors.any? %>
+        <%= @post_cosme.errors.count %>件の空欄があります
+      <% end %>
+    </div>
+  </div>
+
   <%= form_with model: @post_cosme, url: public_post_cosme_path(@post_cosme.id), method: :patch do |f| %>
     <div class="row">
       <div class="mx-auto col-5">
         <table class="table">
           <tr>
             <th><%= f.label :"画像" %></th>
-            <td><%= f.file_field :image, accept: "image/*" %></td>
+            <td><%= f.file_field :image, accept: "image/*", class:"form-control" %></td>
           </tr>
           <tr>
             <th><%= f.label :"商品名" %></th>
-            <td><%= f.text_field :cosme_name %></td>
+            <td><%= f.text_field :cosme_name, class:"form-control" %></td>
           </tr>
           <tr>
             <th><%= f.label :"内容" %></th>
-            <td><%= f.text_area :introduction %></td>
+            <td><%= f.text_area :introduction, class:"form-control" %></td>
           </tr>
           <tr>
             <th><%= f.label :"タグ" %></th>

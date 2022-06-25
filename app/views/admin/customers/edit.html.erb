@@ -4,6 +4,15 @@
       <h1 class="d-flex align-items-center justify-content-center"><%= @customer.name %>さんの情報編集</h1>
     </div>
   </div>
+
+  <div class="row mt-1 md-3">
+    <div class="mx-auto">
+      <% if @customer.errors.any? %>
+        <%= @customer.errors.count %>件の空欄があります
+      <% end %>
+    </div>
+  </div>
+
   <%= form_with model: @customer, url:admin_customer_path, method: :patch do |f| %>
     <div class="row">
       <div class="mx-auto col-lg-4 col-sm-8">
