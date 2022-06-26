@@ -1,6 +1,7 @@
 <div class="notifications">
  <div class="notice"><%= flash[:alert] %><%= flash[:notice] %></div>
 </div>
+
 <div class="container">
   <div class="row mt-5 md-3">
     <div class="col-12">
@@ -8,28 +9,37 @@
     </div>
   </div>
 
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="row">
-      <div class="mx-auto col-8">
-        <table class="table">
-          <tr>
-            <th><%= f.label :メールアドレス %></th>
-            <td><%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %></td>
-          </tr>
-          <tr>
-            <th><%= f.label :パスワード %></th>
-            <td><%= f.password_field :password, autocomplete: "current-password", class:"form-control" %></td>
-          </tr>
-        </table>
-      </div>
-    </div>
-
   <div class="row">
-    <div class="mx-auto col-2">
-      <%= f.submit "ログイン", class: "btn btn-dark" %>
-    </div>
-  </div>
+    <div class="mx-auto col-8">
+      <% if customer_signed_in? %>
+        <div>
+          <p class="text-center mt-4">既に会員側でログイン中です</p>
+          <p class="text-center">ログアウト後に再度お試しください</p>
+              <%= link_to "マイページへ戻る",public_post_cosmes_path ,class: "btn btn-outline-info ml-5 col-5" %>
+              <%= link_to "ログアウト",destroy_admin_session_path, method: :delete, class: "btn btn-outline-danger col-5" %>
+        </div>
+      <% else %>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <table class="table">
+            <tr>
+              <th><%= f.label :メールアドレス %></th>
+              <td><%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %></td>
+            </tr>
+            <tr>
+              <th><%= f.label :パスワード %></th>
+              <td><%= f.password_field :password, autocomplete: "current-password", class:"form-control" %></td>
+            </tr>
+          </table>
+
+          <div class="row">
+            <div class="mx-auto col-2">
+              <%= f.submit "ログイン", class: "btn btn-dark" %>
+            </div>
+          </div>
+      <% end %>
   <% end %>
 
   <%= render "admin/shared/links" %>
+  </div>
+  </div>
 </div>

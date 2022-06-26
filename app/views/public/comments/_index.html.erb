@@ -1,21 +1,19 @@
-<table><!--コメント一覧-->
-  <tbody>
-    <% post_cosme.comments.each do |comment| %>
-      <tr id="comment_<%=comment.id%>">
-        <td>
-         <%= image_tag comment.customer.get_profile_image(70,70) %></br>
-          <%= comment.customer.name %>
-         </td>
-         <td><%= comment.comment %></td>
-         <td>
+<div class="row">
+  <table class="table"><!--コメント一覧-->
+      <% post_cosme.comments.each do |comment| %>
+        <tr id="comment_<%=comment.id%>">
+          <td rowspan="2"><%= image_tag comment.customer.get_profile_image(70,70) %></td>
+          <th>
+            <span><%= comment.customer.name %></span>
             <% if admin_signed_in? %>
-              <%= link_to "Destroy", admin_post_cosme_comment_path(comment.post_cosme, comment), method: :delete, remote: true, class: "btn btn-outline-danger" %>
+              <%= link_to "削除", admin_post_cosme_comment_path(comment.post_cosme, comment), method: :delete, remote: true, class: "btn btn-outline-danger" %>
             <% elsif comment.customer == current_customer %>
-              <%= link_to "Destroy", public_post_cosme_comment_path(comment.post_cosme, comment), method: :delete, remote: true, class: "btn btn-outline-danger" %>
+              <%= link_to "削除", public_post_cosme_comment_path(comment.post_cosme, comment), method: :delete, remote: true, class: "btn btn-outline-danger" %>
             <% end %>
-          </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+          </th>
 
+          <tr><td><%= comment.comment %></td></tr>
+        </tr>
+      <% end %>
+  </table>
+</div>

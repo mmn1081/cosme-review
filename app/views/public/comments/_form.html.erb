@@ -1,4 +1,6 @@
-<%= form_with model: post_cosme.comments.new, url:  public_post_cosme_comments_path(post_cosme), local: false do |f| %><!--jsにするためにlocal: falseと記述　HTMLはlocal: trueと記述-->
-  <%= f.text_area :comment, rows: '5',placeholder: "コメントをここに", class: "w-100 comment-textarea" %>
-  <%= f.submit "送信" %>
-<% end %>
+<table>
+  <%= form_with model: post_cosme.comments.new, url:  public_post_cosme_comments_path(post_cosme), local: false, class: 'row' do |f| %><!--jsにするためにlocal: falseと記述　HTMLはlocal: trueと記述-->
+    <%= f.text_area :comment,placeholder: "コメントをここに", class: "w-100 comment-textarea ml-4 col-9" %>
+    <%= f.submit "送信",class: "btn btn-outline-info  mb-5 ml-2 col-2 " %>
+  <% end %>
+</table>

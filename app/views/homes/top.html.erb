@@ -9,9 +9,15 @@
   </div>
   <div class="row">
     <div class="mx-auto col-3">
-      <div><%= link_to "Sign up", new_customer_registration_path ,class: "btn btn-outline-success btn-sm btn-block mb-3 col-12" %></div>
-      <div><%= link_to "Log in", new_customer_session_path ,class: "btn btn-outline-info btn-sm btn-block mb-3 col-12" %></div>
-      <div><%= link_to 'Guest log in', customers_guest_sign_in_path, method: :post ,class: "btn btn-outline-secondary btn-sm btn-block mb-3 col-12" %></div>
+      <% if customer_signed_in? %>
+        <%= link_to "マイページへ戻る",public_post_cosmes_path ,class: "btn btn-outline-info btn-sm btn-block mb-3 col-12" %>
+      <% elsif admin_signed_in? %>
+        <%= link_to"管理者画面へ戻る", admin_customers_path ,class: "btn btn-outline-info btn-sm btn-block mb-3 col-12" %>
+      <% else %>
+        <%= link_to "Sign up", new_customer_registration_path ,class: "btn btn-outline-success btn-sm btn-block mb-3 col-12" %>
+        <%= link_to "Log in", new_customer_session_path ,class: "btn btn-outline-info btn-sm btn-block mb-3 col-12" %>
+        <%= link_to 'Guest log in', customers_guest_sign_in_path, method: :post ,class: "btn btn-outline-secondary btn-sm btn-block mb-3 col-12" %>
+      <% end %>
     </div>
   </div>
 </div>

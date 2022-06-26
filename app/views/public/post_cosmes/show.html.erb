@@ -10,14 +10,14 @@
 
     <div class="mx-auto col-7">
       <h2>Show</h2>
-      <div class="col-sm-3 offset-sm-2">
+      <div class="col-3 offset-sm-1">
         <% if @post_cosme.image.attached? %>
-          <%= image_tag @post_cosme.image, size: "200x200" %>
+          <%= image_tag @post_cosme.image, size: "250x200",class: "ml-5"%>
         <% else %>
-          <%= image_tag 'no_image', size: "200x200" %>
+          <%= image_tag 'no_image', size: "200x150" %>
         <% end %>
       </div>
-      <div class="col-sm-8">
+      <div class="col-sm-12">
         <div class="row">
           <table class="table">
             <tr>
@@ -26,8 +26,9 @@
             </tr>
             <tr>
               <th>内容</th>
-              <td><%= @post_cosme.introduction %></td>
+              <td><%= safe_join(@post_cosme.introduction.split("\n"),tag(:br)) %></td>
             </tr>
+
             <tr>
               <th>タグ</th>
               <td><%= @tags.find(@post_cosme.tag_id).name %></td>
@@ -54,13 +55,13 @@
 
           <div class="row">
             <% if @post_cosme.customer == current_customer %>
-             <%= link_to "Edit", edit_public_post_cosme_path(@post_cosme.id), class:"btn btn-outline-success mr-4" %>
-             <%= link_to "Destroy", public_post_cosme_path(@post_cosme), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-danger" %>
+             <%= link_to "編集", edit_public_post_cosme_path(@post_cosme.id), class:"btn btn-outline-success mr-4" %>
+             <%= link_to "削除", public_post_cosme_path(@post_cosme), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-danger" %>
             <% end %>
           </div>
 
         <div class="row">
-          <div class="col-10 mt-5">
+          <div class="col-12 mt-4">
             <div id="comments_count_<%= @post_cosme.id %>"><!--コメント数-->
               <%= render "public/comments/detail", post_cosme: @post_cosme %>
             </div>

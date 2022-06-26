@@ -1,7 +1,7 @@
 class Admin::CustomersController < ApplicationController
   before_action :authenticate_admin!
   def index
-    @customers = Customer.all
+    @customers = Customer.all.order("id DESC")
   end
 
   def show

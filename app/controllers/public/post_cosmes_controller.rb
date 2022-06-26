@@ -1,6 +1,5 @@
 class Public::PostCosmesController < ApplicationController
   before_action :authenticate_customer!#ログインしていないとログイン画面へ
-  #before_action :ensure_correct_customer, only: [:edit, :update]
 
   def edit
     @post_cosme = PostCosme.find(params[:id])
@@ -28,9 +27,9 @@ class Public::PostCosmesController < ApplicationController
   def index
     @tags = Tag.all
     if params[:tag_id].present?
-      @post_cosmes = PostCosme.where(tag_id: params[:tag_id]).page(params[:page])
+      @post_cosmes = PostCosme.where(tag_id: params[:tag_id]).page(params[:page]).order("id DESC")
     else
-      @post_cosmes = PostCosme.page(params[:page])
+      @post_cosmes = PostCosme.page(params[:page]).order("id DESC")
     end
     @customer = current_customer
   end
