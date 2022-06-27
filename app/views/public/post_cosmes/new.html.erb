@@ -37,8 +37,8 @@
             </tr>
           </div>
             <tr>
-              <th><%= f.label :evaluate,"評価" %></th>
-              <td id="evaluate_stars"><%= f.hidden_field :evaluate, id: :review_star %></td>
+              <th><%= f.label :evaluation,"評価" %></th>
+              <td id="evaluate_stars"><%= f.hidden_field :evaluation, id: :review_star %></td>
               <script>
                 $('#evaluate_stars').empty();//ページを戻る時に星を何個も出さない為
                 $('#evaluate_stars').raty({//☆の画像を持ってくる

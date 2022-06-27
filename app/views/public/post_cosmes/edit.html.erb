@@ -35,13 +35,14 @@
           </tr>
           <tr>
             <th><%= f.label :'評価' %></th>
-            <td class="post_cosme-evaluation" data-score="<%= @post_cosme.evaluation %>"><%= f.hidden_field :evaluate, id: :review_star %></td>
+            <td class="post_cosme-evaluation" data-score="<%= @post_cosme.evaluation %>"><%= f.hidden_field :evaluation, id: :review_star %></td>
             <script>
               $('.post_cosme-evaluation').empty();//ページを戻る時に星を何個も出さない為
               $('.post_cosme-evaluation').raty({
                 starOn: "<%= asset_path('star-on.png') %>",
                 starOff: "<%= asset_path('star-off.png') %>",
                 starHalf: "<%= asset_path('star-half.png') %>",
+                scoreName: 'post_cosme[evaluation]',
                 half: true,
                 score: function() {
                   return $(this).attr('data-score');
