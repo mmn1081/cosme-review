@@ -11,7 +11,7 @@
 
   <div class="row">
     <div class="mx-auto col-8">
-      <% if admin_signed_in? %>
+      <% if admin_signed_in? %><!--管理者でログインしているときに会員ページに入れない-->
         <p class="text-center">既に管理者側でログイン中です</p>
         <p class="text-center">ログアウト後に再度お試しください</p>
         <%= link_to "管理者ページへ戻る",admin_customers_path,class: "btn btn-outline-info ml-5 col-5" %>

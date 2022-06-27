@@ -7,11 +7,13 @@
 
   <div class="row">
     <div class="mx-auto col-8">
-      <% if admin_signed_in? %>
+      
+      <% if admin_signed_in? %><!--管理者でログインしているときに会員ページに入れない-->
         <p class="text-center">既に管理者側でログイン中です</p>
         <p class="text-center">ログアウト後に再度お試しください</p>
         <%= link_to "管理者ページへ戻る",admin_customers_path,class: "btn btn-outline-info ml-5 col-5" %>
         <%= link_to "ログアウト",destroy_customer_session_path, method: :delete, class: "btn btn-outline-danger col-5" %>
+        
       <% else %>
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
           <%= render "public/shared/error_messages", resource: resource %>
@@ -44,6 +46,7 @@
               <%= f.submit "新規登録", class: "btn btn-dark" %>
             </div>
           </div>
+          
           <div class="row">
             <div class="mx-auto col-4">
               <%= render "public/shared/links" %>

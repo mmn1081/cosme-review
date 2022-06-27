@@ -15,14 +15,14 @@
 
   <%= form_with model: @customer, url: public_customer_path, method: :patch do |f| %>
     <div class="row">
-      <div class="mx-auto col-lg-5 col-sm-8">
+      <div class="mx-auto col-lg-6 col-sm-8">
         <table class="table">
           <tr>
             <th><%= f.label :"画像" %></th>
             <td><%= f.file_field :profile_image, accept: "image/*", class:"form-control" %></td>
           </tr>
           <tr>
-            <th><%= f.label :"名前" %></th>
+            <th><%= f.label :"ニックネーム" %></th>
             <td><%= f.text_field :name, class:"form-control" %></td>
           </tr>
           <tr>
