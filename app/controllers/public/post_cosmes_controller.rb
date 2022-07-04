@@ -8,9 +8,8 @@ class Public::PostCosmesController < ApplicationController
 
   def update
     @post_cosme = PostCosme.find(params[:id])
-    pp "aaaaaa"
-    pp @post_cosme.customer_id
-    pp @post_cosme.evaluation
+    @post_cosme.customer_id
+    @post_cosme.evaluation
     if @post_cosme.update(post_cosme_params)
       redirect_to public_post_cosme_path(@post_cosme.id)
       flash[:notice] = "更新できました"
