@@ -12,8 +12,8 @@
 </table>
 <div class="row">
   <div class="mx-auto">
-  <% if customer.id == current_customer.id && current_customer.email != 'guest@example.com' %>
-    <%= link_to "Profile Edit", edit_public_customer_path(customer), class:"btn btn-outline-dark col-12" %>
-  <% end %>
+    <% if customer.id == current_customer.id && current_customer.email != 'guest@example.com' %>
+      <%= link_to "Profile Edit", edit_public_customer_path(customer), class:"btn btn-outline-dark col-12" %>
+    <% end %>
   </div>
 </div>
