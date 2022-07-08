@@ -1,3 +1,5 @@
+<!--商品詳細-->
+
 <div class="notifications">
  <div class="notice"><%= flash[:notice] %></div>
 </div>
@@ -35,7 +37,7 @@
             </tr>
             <tr>
               <th>評価</th>
-              <td class="post_cosme-evaluation" data-score="<%= @post_cosme.evaluation %>"></td>
+              <td class="post_cosme-evaluation" data-score="<%= @post_cosme.evaluation %>"></td><!--登録した星のデータ-->
               <script>
                 $('.post_cosme-evaluation').empty();//ページを戻る時に星を何個も出さない為
                 $('.post_cosme-evaluation').raty({

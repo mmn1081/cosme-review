@@ -28,7 +28,7 @@ class Public::PostCosmesController < ApplicationController
   def index
     @tags = Tag.all
     if params[:tag_id].present?
-      @post_cosmes = PostCosme.where(tag_id: params[:tag_id]).page(params[:page]).order("id DESC")
+      @post_cosmes = PostCosme.where(tag_id: params[:tag_id]).page(params[:page]).order("id DESC")#絞り込み機能
     else
       @post_cosmes = PostCosme.page(params[:page]).order("id DESC")
     end

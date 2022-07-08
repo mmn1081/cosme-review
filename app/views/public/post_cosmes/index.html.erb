@@ -1,3 +1,5 @@
+<!--全部の投稿一覧-->
+
 <div class="notifications">
  <div class="notice"><%= flash[:notice] %></div>
 </div>
@@ -18,7 +20,7 @@
               options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
               {
                 prompt: 'タグ検索',
-                onchange: 'submit(this.form);'
+                onchange: 'submit(this.form);'#項目をクリックしたらすぐに一覧をだす
               }
             %>
           <% end %>

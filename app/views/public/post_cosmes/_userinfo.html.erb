@@ -1,3 +1,5 @@
+<!--プロフィール画面-->
+
 <h2>Profile</h2>
 <tr><%= image_tag customer.get_profile_image(150, 100) %></tr>
 <table class="table">
@@ -12,7 +14,7 @@
 </table>
 <div class="row">
   <div class="mx-auto">
-    <% if customer.id == current_customer.id && current_customer.email != 'guest@example.com' %>
+    <% if customer.id == current_customer.id && current_customer.email != 'guest@example.com' %><!--ログインしていないユーザー、ゲストユーザーはプロフィール編集できない-->
       <%= link_to "Profile Edit", edit_public_customer_path(customer), class:"btn btn-outline-dark col-12" %>
     <% end %>
   </div>

@@ -1,3 +1,5 @@
+<!--投稿編集画面-->
+
 <div class="container">
   <div class="row mt-5 mb-3">
     <div class="col-12">
@@ -6,7 +8,7 @@
   </div>
 
   <div class="row mt-1 md-3">
-    <div class="mx-auto">
+    <div class="mx-auto"><!--エラーメッセージ-->
       <% if @post_cosme.errors.any? %>
         <%= @post_cosme.errors.count %>件の空欄があります
       <% end %>
