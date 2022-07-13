@@ -1,5 +1,6 @@
+<!--コメント一覧-->
 <div class="row">
-  <table class="table"><!--コメント一覧-->
+  <table class="table">
       <% post_cosme.comments.each do |comment| %>
         <tr id="comment_<%=comment.id%>">
           <td rowspan="2"><%= image_tag comment.customer.get_profile_image(70,70) %></td>

@@ -1,3 +1,4 @@
+<!--コメント-->
 <table>
   <%= form_with model: post_cosme.comments.new, url:  public_post_cosme_comments_path(post_cosme), local: false, class: 'row' do |f| %><!--jsにするためにlocal: falseと記述　HTMLはlocal: trueと記述-->
     <%= f.text_area :comment,placeholder: "コメントをここに", class: "w-100 comment-textarea ml-4 col-9" %>
