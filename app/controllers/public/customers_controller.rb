@@ -1,6 +1,6 @@
 class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!#ログインしていないとログイン画面へ
-  #before_action :ensure_correct_customer, only: [:update]
+  before_action :ensure_current_customer, only: [:edit, :update]#URLで他のプロフィールを編集できないようにする
 
   def show
     @customer = Customer.find(params[:id])
@@ -26,6 +26,13 @@ class Public::CustomersController < ApplicationController
 
   def customer_params
     params.require(:customer).permit(:name, :profile_image, :introduction)
+  end
+
+  def ensure_current_customer#URLで他のプロフィールを編集できないようにする
+    if current_customer.id != params[:id].to_i
+      flash[:notice]="権限がありません"
+      redirect_to public_post_cosmes_path
+    end
   end
 
 end

@@ -1,5 +1,6 @@
 class Public::PostCosmesController < ApplicationController
   before_action :authenticate_customer!#ログインしていないとログイン画面へ
+  before_action :ensure_customer, only: [:edit, :update, :destroy]#URLで他の人の投稿を編集できないようにする
 
   def edit
     @post_cosme = PostCosme.find(params[:id])
@@ -60,6 +61,13 @@ class Public::PostCosmesController < ApplicationController
 
   def post_cosme_params
     params.require(:post_cosme).permit(:cosme_name, :image, :introduction, :evaluation, :tag_id)
+  end
+
+  def ensure_customer#URLで他の人の投稿を編集できないようにする
+    @post_cosmes = current_customer.post_cosmes
+    @post_cosme = @post_cosmes.find_by(id: params[:id])
+    flash[:notice]="権限がありません"
+    redirect_to public_post_cosme_path unless @post_cosme
   end
 
 end

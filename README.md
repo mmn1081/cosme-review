@@ -15,7 +15,7 @@
 気になっている化粧品のレビューを見たり、使用感や色、お勧めの化粧品、使用方法などを投稿する
 
 ## 設計書
-
+ワイヤーフレームhttps://docs.google.com/presentation/d/18-WepydcWx-wGLc8DNbfhsoLC1wNvQOJZdg92YZUA64/edit?usp=sharing
 
 ## 開発環境
 - OS：Linux(CentOS)
