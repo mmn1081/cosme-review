@@ -15,10 +15,10 @@
 気になっている化粧品のレビューを見たり、使用感や色、お勧めの化粧品、使用方法などを投稿する
 
 ## 設計書
-・ワイヤーフレーム:https://docs.google.com/presentation/d/18-WepydcWx-wGLc8DNbfhsoLC1wNvQOJZdg92YZUA64/edit?usp=sharing
-・ER図：https://drive.google.com/file/d/1XXz_BjYdq7R81fm3wR_yEgaRLvibBVka/view?usp=sharing
-・テーブル定義書：https://docs.google.com/spreadsheets/d/1QCsfMZA5GXB1AxZZ09HECYwbG-6bYTFp03AdTzwlVM4/edit?usp=sharing
-・詳細設計：https://docs.google.com/spreadsheets/d/1GAb2I72xSu7dRviwWS8JKnMpL9tEyNjEFb-XPAHk610/edit?usp=sharing
+- ワイヤーフレーム:https://docs.google.com/presentation/d/18-WepydcWx-wGLc8DNbfhsoLC1wNvQOJZdg92YZUA64/edit?usp=sharing
+- ER図：https://drive.google.com/file/d/1XXz_BjYdq7R81fm3wR_yEgaRLvibBVka/view?usp=sharing
+- テーブル定義書：https://docs.google.com/spreadsheets/d/1QCsfMZA5GXB1AxZZ09HECYwbG-6bYTFp03AdTzwlVM4/edit?usp=sharing
+- 詳細設計：https://docs.google.com/spreadsheets/d/1GAb2I72xSu7dRviwWS8JKnMpL9tEyNjEFb-XPAHk610/edit?usp=sharing
 
 ## 開発環境
 - OS：Linux(CentOS)
